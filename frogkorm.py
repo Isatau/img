@@ -6,7 +6,6 @@ from telethon.tl.types import Message
 
 @loader.tds
 class FarmIrisMod(loader.Module):
-	"""Для автоматического фарминга коинов в ирисботе"""
 	strings = {
 		'name': 'FrogKorm',
 		'frkoon': '<i>✅Отложенка создана, автофарминг запущен, всё начнётся через 20 секунд...</i>',
@@ -25,7 +24,6 @@ class FarmIrisMod(loader.Module):
 		self.honey = 1276392130
 		
 	async def frkooncmd(self, message):
-		"""Запустить автофарминг"""
 		status = self.db.get(self.name, "status", False)
 		if status: return await message.edit(self.strings['frkoon_already'])
 		self.db.set(self.name, "status", True)
@@ -33,14 +31,12 @@ class FarmIrisMod(loader.Module):
 		await message.edit(self.strings['frkoon'])
 		
 	async def frkooffcmd(self, message):
-		"""Остановить автофарминг"""
 		self.db.set(self.name, 'status', False)
 		coins = self.db.get(self.name, 'coins', 0)
 		if coins: self.db.set(self.name, 'coins', 0)
 		await message.edit(self.strings['frkooff'].replace("%coins%", str(coins)))
 		
 	async def bukcmd(self, message):
-		"""Вывод кол-ва коинов, добытых этим модулем"""
 		coins = self.db.get(self.name, "coins", 0)
 		await message.edit(self.strings['buk'].replace("%coins%", str(coins)))
 	
