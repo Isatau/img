@@ -17,10 +17,10 @@ class frogkormMod(loader.Module):
 		self.name = self.strings['name']
 		
 	async def client_ready(self, client, db):
-		self.client = client
-		self.db = db
-		self.myid = (await client.get_me()).id
-		self.honey = 798765050
+			self.client = client
+			self.db = db
+			self.myid = (await client.get_me()).id
+			self.honey = 798765050
 		
 	async def koncmd(self, message):
 		running = True
@@ -34,5 +34,6 @@ class frogkormMod(loader.Module):
 			await message.edit(self.strings['kon'])
 		
 	async def koffcmd(self, message):
-		self.db.set(self.name, 'status', False)
-		await message.edit(self.strings['koff'])
+		running = False
+			self.db.set(self.name, 'status', False)
+			await message.edit(self.strings['koff'])
