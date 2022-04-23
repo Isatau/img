@@ -8,7 +8,7 @@ from telethon.tl.types import Message
 class frogkormMod(loader.Module):
 	strings = {
 		'name': 'FrogKorm',
-		'frkoon': '<i>✅Отложенка создана, кормеж в ханей запущен, всё начнётся через 20 секунд...</i>',
+		'frkoon': '<i>✅Отложенка создана, кормеж в ханей запущен...</i>',
 		'frkoon_already': '<i>Уже запущено</i>',
 		'frkooff': '<i>❌Автофарминг в ханей остановлен.\n🐞Надюпано буках:</i>',
 	}
@@ -20,13 +20,13 @@ class frogkormMod(loader.Module):
 		self.client = client
 		self.db = db
 		self.myid = (await client.get_me()).id
-		self.honey = 1276392130
+		self.honey = 798765050
 		
 	async def frkooncmd(self, message):
 		status = self.db.get(self.name, "status", False)
 		if status: return await message.edit(self.strings['frkoon_already'])
 		self.db.set(self.name, "status", True)
-		await self.client.send_message(self.honey, "Покормить жабу", schedule=timedelta(hours=8))
+		await self.client.send_message(self.honey, "Покормить жабу", schedule=timedelta(seconds=20))
 		await message.edit(self.strings['frkoon'])
 		
 	async def frkooffcmd(self, message):
