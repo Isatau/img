@@ -23,7 +23,8 @@ class frogkormMod(loader.Module):
 		self.honey = 798765050
 		
 	async def koncmd(self, message):
-		while True:
+		running = True
+		while running:
 			status = self.db.get(self.name, "status", False)
 			if status: return await message.edit(self.strings['kon_already'])
 			self.db.set(self.name, "status", True)
